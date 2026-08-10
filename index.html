@@ -853,10 +853,10 @@ document.getElementById('editFab').addEventListener('click', ()=>{
 });
 
 /* ================= IMAGE UPLOADS ================= */
-const fileInput = document.getElementById('fileInput');
+const adminFileInput = document.getElementById('fileInput');
 document.getElementById('heroVisual').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='hero'; fileInput.click(); });
-document.getElementById('avatarWrap').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='avatar'; fileInput.click(); });
-document.getElementById('btnAddPhoto').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='gallery'; fileInput.click(); });
+document.getElementById('avatarWrap').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
+document.getElementById('btnAddPhoto').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='gallery'; adminFileInput.click(); });
 document.querySelectorAll('.service-photo').forEach(box=>{
   box.addEventListener('click', (e)=>{
     if(!unlockEditMode()) return;
@@ -865,7 +865,7 @@ document.querySelectorAll('.service-photo').forEach(box=>{
     }else if(box.id.startsWith('tourPhoto-')){
       pendingUploadTarget = 'tour:' + box.id.replace('tourPhoto-','');
     }
-    fileInput.click();
+    adminfileInput.click();
   });
 });
 
@@ -894,11 +894,11 @@ function resizeImageFile(file, maxDim, quality){
   });
 }
 
-fileInput.addEventListener('change', async (e)=>{
+adminfileInput.addEventListener('change', async (e)=>{
   const file = e.target.files[0];
   if(!file) return;
   const target = pendingUploadTarget;
-  fileInput.value='';
+  adminfileInput.value='';
   try{
     showToast('Cargando foto…');
     // hero/avatar a un tamaño más chico, galería y recuadros con más resolución
