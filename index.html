@@ -674,21 +674,36 @@ document.querySelectorAll('.editable-text').forEach(el=>{
   });
 });
 
-function unlockEditMode(){
-  if(editMode) return true;
-  const pin = prompt('PIN para editar el sitio:');
-  if(pin !== EDIT_PIN){ if(pin!==null) alert('PIN incorrecto'); return false; }
-  editMode = true;
-  document.body.classList.add('edit-mode');
-  document.getElementById('editFab').classList.add('active');
-  document.getElementById('editFab').textContent = '✓';
-  setTextsEditable(true);
-  renderSchedule();
-  renderCarousel();
-  renderPhotoBoxes('servicePhoto-', state.services);
-  renderPhotoBoxes('tourPhoto-', state.tour);
-  return true;
-}
+ async function unlockEditMode(){
+    if(editMode) return true;
+
+    const email = prompt('Email de administrador:');
+    if(!email) return false;
+
+    const password = prompt('Contraseña de administrador:');
+    if(!password) return false;
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: email.trim(),
+        password: password
+    });
+
+    if(error || !data.user){
+        alert('Email o contraseña incorrectos');
+        return false;
+    }
+
+    editMode = true;
+    document.body.classList.add('edit-mode');
+    document.getElementById('editFab').classList.add('active');
+    document.getElementById('editFab').textContent = '✓';
+    setTextsEditable(true);
+    renderSchedule();
+    renderCarousel();
+    renderPhotoBoxes('servicePhoto-', state.services);
+    renderPhotoBoxes('tourPhoto-', state.tour);
+    return true;
+ }
 
 document.getElementById('editFab').addEventListener('click', ()=>{
   if(!editMode){ unlockEditMode(); return; }
