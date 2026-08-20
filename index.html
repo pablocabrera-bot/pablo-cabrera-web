@@ -720,9 +720,9 @@ document.getElementById('editFab').addEventListener('click', ()=>{
 
 /* ================= IMAGE UPLOADS ================= */
 const adminFileInput = document.getElementById('fileInput');
-document.getElementById('heroVisual').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='hero'; adminFileInput.click(); });
-document.getElementById('avatarWrap').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
-document.getElementById('btnAddPhoto').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='gallery'; adminFileInput.click(); });
+document.getElementById('heroVisual').addEventListener('click', ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='hero'; adminFileInput.click(); });
+document.getElementById('avatarWrap').addEventListener('click', ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
+document.getElementById('btnAddPhoto').addEventListener('click', ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='gallery'; adminFileInput.click(); });
 document.querySelectorAll('.service-photo').forEach(box=>{
   box.addEventListener('click', (e)=>{
     if(!unlockEditMode()) return;
