@@ -720,7 +720,7 @@ document.getElementById('editFab').addEventListener('click', ()=>{
 
 /* ================= IMAGE UPLOADS ================= */
 const adminFileInput = document.getElementById('fileInput');
-document.getElementById('heroVisual').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='hero'; adminFileInput.click(); });
+document.getElementById('heroVisual').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='hero'; adminFileInput.click(); });
 document.getElementById('avatarWrap').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
 
 document.querySelectorAll('.service-photo').forEach(box=>{
