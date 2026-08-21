@@ -641,7 +641,7 @@ function renderCarousel(){
   track.querySelectorAll('.slide-remove').forEach(btn=>{
     btn.addEventListener('click', async (e)=>{
       e.stopPropagation();
-      if(!(await unlockEditMode())) return;
+      if(!editMode) return;
       const i = parseInt(e.currentTarget.dataset.i);
       state.gallery.splice(i,1);
       saveState();
