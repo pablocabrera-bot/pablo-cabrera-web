@@ -721,11 +721,11 @@ document.getElementById('editFab').addEventListener('click', ()=>{
 /* ================= IMAGE UPLOADS ================= */
 const adminFileInput = document.getElementById('fileInput');
 document.getElementById('heroVisual').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='hero'; adminFileInput.click(); });
-document.getElementById('avatarWrap').addEventListener('click', ()=>{ if(!unlockEditMode()) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
+document.getElementById('avatarWrap').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
 
 document.querySelectorAll('.service-photo').forEach(box=>{
-  box.addEventListener('click', (e)=>{
-    if(!unlockEditMode()) return;
+  box.addEventListener('click', async (e)=>{
+    if(!(await unlockEditMode())) return;
     if(box.id.startsWith('servicePhoto-')){
       pendingUploadTarget = 'service:' + box.id.replace('servicePhoto-','');
     }else if(box.id.startsWith('tourPhoto-')){
