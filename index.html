@@ -725,7 +725,7 @@ document.getElementById('avatarWrap').addEventListener('click', async ()=>{ if(!
 document.getElementById('btnAddPhoto').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='gallery'; adminFileInput.click(); });
 document.querySelectorAll('.service-photo').forEach(box=>{
   box.addEventListener('click', async (e)=>{
-    if(!(await unlockEditMode())) return;
+    if(!editMode) return;
     if(box.id.startsWith('servicePhoto-')){
       pendingUploadTarget = 'service:' + box.id.replace('servicePhoto-','');
     }else if(box.id.startsWith('tourPhoto-')){
