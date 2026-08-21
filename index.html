@@ -639,9 +639,9 @@ function renderCarousel(){
   });
   track.style.transform = `translateX(-${carIndex*100}%)`;
   track.querySelectorAll('.slide-remove').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
+    btn.addEventListener('click', async (e)=>{
       e.stopPropagation();
-      if(!unlockEditMode()) return;
+      if(!(await unlockEditMode())) return;
       const i = parseInt(e.currentTarget.dataset.i);
       state.gallery.splice(i,1);
       saveState();
