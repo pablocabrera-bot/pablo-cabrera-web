@@ -722,7 +722,7 @@ document.getElementById('editFab').addEventListener('click', ()=>{
 const adminFileInput = document.getElementById('fileInput');
 document.getElementById('heroVisual').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='hero'; adminFileInput.click(); });
 document.getElementById('avatarWrap').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='avatar'; adminFileInput.click(); });
-
+document.getElementById('btnAddPhoto').addEventListener('click', async ()=>{ if(!(await unlockEditMode())) return; pendingUploadTarget='gallery'; adminFileInput.click(); });
 document.querySelectorAll('.service-photo').forEach(box=>{
   box.addEventListener('click', async (e)=>{
     if(!(await unlockEditMode())) return;
